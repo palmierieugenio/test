@@ -1,0 +1,277 @@
+<!DOCTYPE html> 
+ <html> 
+ <head> 
+ <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+ <meta charset="utf-8"> 
+ <style type="text/css">  
+ html { height: 100% ; font-size: small} 
+ body { height: 100%; margin: 0px; padding: 0px }
+ #map_canvas {min-height: 100%;height:auto; } 
+ #cBoxes {position:absolute;right:5px; top:50px; background:white}
+</style> 
+
+ <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&v=3.18"> </script>  
+
+ <script language="javascript"> 
+  
+ USGSOverlay.prototype = new google.maps.OverlayView(); 
+function USGSOverlay(bounds, image, map) {
+      this.bounds_ = bounds;
+      this.image_ = image;
+      this.map_ = map;
+      this.div_ = null;
+      this.setMap(map); }
+USGSOverlay.prototype.onAdd = function() {
+      var div = document.createElement("DIV");
+      div.style.border = "none";
+      div.style.borderWidth = "0px";
+      div.style.position = "absolute";
+      var img = document.createElement("img");
+      img.src = this.image_;
+      img.style.width = "100%";
+      img.style.height = "100%";
+      div.appendChild(img);
+      this.div_ = div;
+      this.div_.style.opacity = 0.7;
+      var panes = this.getPanes();
+      panes.overlayImage.appendChild(this.div_);}
+USGSOverlay.prototype.draw = function() {
+        var overlayProjection = this.getProjection();
+        var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
+        var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+        var div = this.div_;
+        div.style.left = sw.x + "px";
+        div.style.top = ne.y + "px";
+        div.style.width = (ne.x - sw.x) + "px";
+        div.style.height = (sw.y - ne.y) + "px";} 
+USGSOverlay.prototype.onRemove = function() { 
+ this.div_.parentNode.removeChild(this.div_);} 
+USGSOverlay.prototype.hide = function() { if (this.div_) { this.div_.style.visibility = "hidden";} } 
+USGSOverlay.prototype.show = function() {if (this.div_) {  this.div_.style.visibility = "visible";}} 
+       USGSOverlay.prototype.toggle = function() { 
+ if (this.div_) { 
+  if (this.div_.style.visibility == "hidden") {  
+   this.show(); 
+  } else { 
+  this.hide(); } } } 
+ USGSOverlay.prototype.toggleDOM = function() {
+          if (this.getMap()) {
+            this.setMap(null);
+          } else {
+            this.setMap(this.map_);}}
+ function setOpacR(Raster,textname) { 
+  opac=0.01*parseInt(document.getElementById(textname).value) 
+    Raster.div_.style.opacity= opac } 
+
+ 
+ var map  
+ var  polyaXxcxxpoverixxX8857 =[] ; 
+ var polygon= new google.maps.Polygon({ 
+ paths:[ new google.maps.LatLng( 43.688190460205 , 11.3069438934327 ),
+new google.maps.LatLng( 43.688217163086 , 11.3068218231201 ),
+new google.maps.LatLng( 43.6884956359864 , 11.3056402206422 ),
+new google.maps.LatLng( 43.6894187927247 , 11.2994966506959 ),
+new google.maps.LatLng( 43.6894874572755 , 11.298357963562 ),
+new google.maps.LatLng( 43.6892852783203 , 11.2935609817506 ),
+new google.maps.LatLng( 43.6889801025391 , 11.2917261123658 ),
+new google.maps.LatLng( 43.6880950927734 , 11.28697681427 ),
+new google.maps.LatLng( 43.6879234313965 , 11.2861642837525 ),
+new google.maps.LatLng( 43.6841926574707 , 11.2836780548096 ),
+new google.maps.LatLng( 43.6724281311036 , 11.2758388519288 ),
+new google.maps.LatLng( 43.6634941101075 , 11.2705030441284 ),
+new google.maps.LatLng( 43.6625556945801 , 11.270492553711 ),
+new google.maps.LatLng( 43.6617584228517 , 11.2704505920411 ),
+new google.maps.LatLng( 43.6610870361329 , 11.2701015472413 ),
+new google.maps.LatLng( 43.6607513427735 , 11.2693214416505 ),
+new google.maps.LatLng( 43.6589508056641 , 11.2635364532471 ),
+new google.maps.LatLng( 43.6586990356446 , 11.2621622085572 ),
+new google.maps.LatLng( 43.6586418151855 , 11.2608575820924 ),
+new google.maps.LatLng( 43.6587562561036 , 11.2591018676758 ),
+new google.maps.LatLng( 43.6588363647462 , 11.2587928771973 ),
+new google.maps.LatLng( 43.6590003967285 , 11.25816822052 ),
+new google.maps.LatLng( 43.6591606140138 , 11.2578287124635 ),
+new google.maps.LatLng( 43.6593742370607 , 11.2575750350953 ),
+new google.maps.LatLng( 43.6597595214844 , 11.2572793960571 ),
+new google.maps.LatLng( 43.6587677001953 , 11.2528018951417 ),
+new google.maps.LatLng( 43.6581649780273 , 11.2499151229859 ),
+new google.maps.LatLng( 43.6581916809083 , 11.2490730285645 ),
+new google.maps.LatLng( 43.6584930419923 , 11.2406120300293 ),
+new google.maps.LatLng( 43.6673316955567 , 11.2148971557618 ),
+new google.maps.LatLng( 43.6675720214844 , 11.2145586013795 ),
+new google.maps.LatLng( 43.6683387756349 , 11.2141723632812 ),
+new google.maps.LatLng( 43.6730613708497 , 11.2142028808594 ),
+new google.maps.LatLng( 43.6834945678712 , 11.2133827209473 ),
+new google.maps.LatLng( 43.6917724609375 , 11.2117652893066 ),
+new google.maps.LatLng( 43.6978607177734 , 11.2097301483154 ),
+new google.maps.LatLng( 43.704444885254 , 11.199026107788 ),
+new google.maps.LatLng( 43.7046241760254 , 11.1980266571046 ),
+new google.maps.LatLng( 43.7065162658691 , 11.1932191848755 ),
+new google.maps.LatLng( 43.7069625854493 , 11.192289352417 ),
+new google.maps.LatLng( 43.709415435791 , 11.1882238388062 ),
+new google.maps.LatLng( 43.7131652832032 , 11.1902961730958 ),
+new google.maps.LatLng( 43.7255516052247 , 11.1997356414795 ),
+new google.maps.LatLng( 43.7262077331543 , 11.200330734253 ),
+new google.maps.LatLng( 43.7280273437501 , 11.2020740509034 ),
+new google.maps.LatLng( 43.7294578552247 , 11.2034797668458 ),
+new google.maps.LatLng( 43.731517791748 , 11.206039428711 ),
+new google.maps.LatLng( 43.7318954467774 , 11.2065124511718 ),
+new google.maps.LatLng( 43.7324447631837 , 11.2074384689332 ),
+new google.maps.LatLng( 43.7275161743165 , 11.2132043838502 ),
+new google.maps.LatLng( 43.7273445129395 , 11.2136449813843 ),
+new google.maps.LatLng( 43.7272644042969 , 11.214448928833 ),
+new google.maps.LatLng( 43.7272949218751 , 11.2153444290162 ),
+new google.maps.LatLng( 43.7293930053712 , 11.236936569214 ),
+new google.maps.LatLng( 43.7308197021484 , 11.249182701111 ),
+new google.maps.LatLng( 43.7311401367189 , 11.249348640442 ),
+new google.maps.LatLng( 43.7345314025878 , 11.2549343109131 ),
+new google.maps.LatLng( 43.7359809875489 , 11.2576580047607 ),
+new google.maps.LatLng( 43.7355918884278 , 11.2581424713135 ),
+new google.maps.LatLng( 43.7347831726074 , 11.2585315704346 ),
+new google.maps.LatLng( 43.7340621948242 , 11.2591381072998 ),
+new google.maps.LatLng( 43.7333755493165 , 11.2600679397583 ),
+new google.maps.LatLng( 43.7214698791504 , 11.2779932022095 ),
+new google.maps.LatLng( 43.7197799682617 , 11.2823476791382 ),
+new google.maps.LatLng( 43.7159423828124 , 11.2843503952027 ),
+new google.maps.LatLng( 43.7104148864747 , 11.2844352722167 ),
+new google.maps.LatLng( 43.7098045349121 , 11.2841787338257 ),
+new google.maps.LatLng( 43.7092933654786 , 11.2840967178345 ),
+new google.maps.LatLng( 43.7088165283204 , 11.2844886779785 ),
+new google.maps.LatLng( 43.7077331542968 , 11.2859249114991 ),
+new google.maps.LatLng( 43.7055816650392 , 11.2891941070557 ),
+new google.maps.LatLng( 43.7019424438477 , 11.2977542877197 ),
+new google.maps.LatLng( 43.7041816711427 , 11.2997388839722 ),
+new google.maps.LatLng( 43.7049980163574 , 11.3007011413574 ),
+new google.maps.LatLng( 43.7058067321778 , 11.3016996383668 ),
+new google.maps.LatLng( 43.7067108154297 , 11.3029565811158 ),
+new google.maps.LatLng( 43.7059402465821 , 11.3070907592773 ),
+new google.maps.LatLng( 43.7055053710938 , 11.3076076507568 ),
+new google.maps.LatLng( 43.7022285461426 , 11.3090953826904 ),
+new google.maps.LatLng( 43.701530456543 , 11.3091564178467 ),
+new google.maps.LatLng( 43.6921043395997 , 11.3096370697023 ),
+new google.maps.LatLng( 43.6897277832032 , 11.3091487884521 ),
+new google.maps.LatLng( 43.6891746520996 , 11.3088922500611 ),
+ new google.maps.LatLng( 43.688190460205 , 11.3069438934327 )], 
+map:map, 
+ clickable:true,
+ fillColor: "#00FF00",
+ strokeColor: "", 
+ strokeOpacity:1,
+ fillOpacity:0.7,
+ strokeWeight:1,
+ geodesic:true,
+ zIndex:null});
+polyaXxcxxpoverixxX8857.push(polygon); 
+
+function showR(R,boxname, map) {
+  R.setMap(map);
+  document.getElementById(boxname).checked = true; }
+
+function hideR(R,boxname) {
+R.setMap(null);
+document.getElementById(boxname).checked = false; }
+
+function showO(MLPArray,boxname, map ) { 
+for (var i = 0; i < MLPArray.length; i++) { 
+MLPArray[i].setMap(map); } 
+document.getElementById(boxname).checked = true; }
+
+function hideO(MLPArray,boxname) { 
+for (var i = 0; i < MLPArray.length; i++) { 
+MLPArray[i].setMap(null);} 
+document.getElementById(boxname).checked = false; } 
+
+function boxclick(box,MLPArray,boxname, map) { 
+if (box.checked) { showO(MLPArray,boxname, map); 
+}else {  hideO(MLPArray,boxname);} }
+
+function setOpac(MLPArray,textname){
+opacity=0.01*parseInt(document.getElementById(textname).value) 
+for(var i = 0; i < MLPArray.length; i++) {
+MLPArray[i].setOptions({strokeOpacity: opacity, fillOpacity: opacity}); }}
+
+function setOpacL(MLPArray,textname) {
+opacity=0.01*parseInt(document.getElementById(textname).value) 
+for (var i = 0; i < MLPArray.length; i++) {
+MLPArray[i].setOptions({strokeOpacity: opacity});}}
+
+function setLineWeight(MLPArray,textnameW){
+weight=parseInt(document.getElementById(textnameW).value)
+for (var i = 0; i < MLPArray.length; i++){
+MLPArray[i].setOptions({strokeWeight: weight}); } }
+
+function legendDisplay(box,divLegendImage){
+element = document.getElementById(divLegendImage).style;
+if (box.checked){ element.display="block";} else {  element.display="none";}}
+
+function boxclickR(box,R,boxname, map) {
+if (box.checked){
+showR(R,boxname,map); } else { hideR(R,boxname);} }
+
+function legendDisplay(box,divLegendImage){
+element = document.getElementById(divLegendImage).style; 
+if (box.checked){ element.display="block";} else {  element.display="none";}}  
+ function initialize() { 
+ var latlng = new google.maps.LatLng( 43.6970729827881 , 11.2489304542542 ) ; 
+ 
+ var myOptions = { zoom: 12 , 
+ center: latlng , 
+ mapTypeId: google.maps.MapTypeId.HYBRID  ,
+ disableDefaultUI: false  ,
+ disableDoubleClickZoom: false  ,
+  draggable: true  ,
+  keyboardShortcuts:  true  ,
+ mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DEFAULT}  ,
+  navigationControl: true  ,
+ navigationControlOptions: {style: google.maps.NavigationControlStyle.DEFAULT}  ,
+ noClear: false  ,
+ scaleControl: true  ,
+ scaleControlOptions: {style: google.maps.ScaleControlStyle.STANDARD}  ,
+  scrollwheel: true  ,
+ streetViewControl: false } ; 
+ 
+ map= new google.maps.Map(document.getElementById("map_canvas"),myOptions); 
+ 
+ var infowindow = new google.maps.InfoWindow({ content: "", disableAutoPan:false, maxWidth :330, pixelOffset :null, position :new google.maps.LatLng( 43.6977263829114 , 11.2469558206433 ) }); 
+ google.maps.event.addListener(polyaXxcxxpoverixxX8857[0] ,"click",function(event){ 
+
+ infowindow.setContent("poveri : 25 <br>"); 
+
+ infowindow.setPosition(event.latLng);
+
+ infowindow.open(map)});   
+showO(polyaXxcxxpoverixxX8857,"polyaXxcxxpoverixxX8857box",map);  google.maps.event.addListener(  map , 'rightclick', function(event) {
+    var lat = event.latLng.lat();
+    var lng = event.latLng.lng();
+    alert('Lat=' + lat + '; Lng=' + lng);});   
+ }
+</script> 
+ </head> 
+ <body onload="initialize()"> 
+  <div id="map_canvas"></div>  
+
+                           
+ <div id="cBoxes"> 
+<table border="0"> 
+ <tr> 
+  <td> 
+                                 <input type="checkbox" id="polyaXxcxxpoverixxX8857box" 
+                                 onClick='boxclick(this,polyaXxcxxpoverixxX8857,"polyaXxcxxpoverixxX8857box",map);' /> <b> Economic Data<b> </td> </tr> 
+ 
+ <tr> <td> 
+ <input type="text" id="polyaXxcxxpoverixxX8857text" value="50" onChange='setOpac(polyaXxcxxpoverixxX8857,"polyaXxcxxpoverixxX8857text")' size=3 /> 
+                                 Opacity (0-100 %) </td> </tr> 
+ 
+ <tr>  <td> 
+ <input type="text" 
+                                 id="polyaXxcxxpoverixxX8857W" value="1" onChange='
+                                 setLineWeight(polyaXxcxxpoverixxX8857,"polyaXxcxxpoverixxX8857W")' 
+                                 size=3 /> Line weight (pixels) </td> </tr> 
+  
+ <tr>  <td> <input type="checkbox"  checked="checked" id="boxLegend169878a66773" onClick='legendDisplay(this,"Legend169878a66773");' /> LEGEND </td> </tr>  <tr> <td>poveri</td> </tr>
+                                    <tr> <td> <div style="display:block;" id="Legend169878a66773"> <img src="Legend169878a66773.png" alt="Legend" height="70%"> </div>
+                           </td> </tr> 
+ </table> 
+  <hr> 
+ </div> 
+ </body>  
+  </html>
